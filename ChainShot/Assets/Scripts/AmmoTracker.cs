@@ -28,12 +28,12 @@ public class AmmoTracker : MonoBehaviour
             isThrown = false;
             transform.position = startPosition;
             projectile.StopProjectile();
-            Debug.Log("Enemy was hit!");
         }
         else if (other.tag == "Deathwall")
         {
             ammoEmpty = true;
             Debug.Log("DeathWall was hit!");
+            //Endgame
         }
     }
 }

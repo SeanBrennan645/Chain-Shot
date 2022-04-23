@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    private bool isHit = false;
     private Vector3 startPosition;
     private EnemyMover mover;
 
@@ -13,6 +12,8 @@ public class EnemyHealth : MonoBehaviour
     {
         mover = GetComponent<EnemyMover>();
         startPosition = transform.position;
+        startPosition -= new Vector3(startPosition.x, 0.0f, 0.0f);
+        Debug.Log("Start Pos: " + startPosition);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -20,14 +21,18 @@ public class EnemyHealth : MonoBehaviour
         if (other.tag == "Player")
         {
             mover.IncreaseSpeed();
-            transform.position = startPosition;
-            this.gameObject.SetActive(false);
+            ResetEnemy();
             //increase score
         }
         if (other.tag == "Deathwall")
         {
-            transform.position = startPosition;
-            this.gameObject.SetActive(false);
+            ResetEnemy();
         }
+    }
+
+    private void ResetEnemy()
+    {
+        transform.position = startPosition;
+        this.gameObject.SetActive(false);
     }
 }
