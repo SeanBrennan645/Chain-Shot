@@ -5,17 +5,12 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     private bool isHit = false;
+    private Vector3 startPosition;
 
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        startPosition = transform.position;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,8 +19,12 @@ public class EnemyHealth : MonoBehaviour
         {
             Debug.Log("I've been hit!!");
             this.enabled = false;
+            //increase score
         }
-        else
-            return;
+        if (other.tag == "Deathwall")
+        {
+            transform.position = startPosition;
+            this.enabled = false;
+        }
     }
 }

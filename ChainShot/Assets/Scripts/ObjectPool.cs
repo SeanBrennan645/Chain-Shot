@@ -2,16 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ObjectPool : MonoBehaviour
 {
     [SerializeField] GameObject enemy;
     [SerializeField] Transform SpawnLocation;
+    [SerializeField] float[] distanceRange = new float[2]; 
     [SerializeField] int poolSize = 5;
     [SerializeField] float spawnTimer = 1.0f;
 
     private GameObject[] pool;
-
     private void Awake()
     {
         PopulatePool();
@@ -49,6 +50,7 @@ public class ObjectPool : MonoBehaviour
         {
             if(pool[i].activeInHierarchy == false)
             {
+                pool[i].transform.position += new Vector3(Random.Range(distanceRange[0], distanceRange[1]), 0, 0);
                 pool[i].SetActive(true);
                 return;
             }
