@@ -17,4 +17,10 @@ public class LevelManager : MonoBehaviour
     {
         endGameUI.SetActive(true);
     }
+
+    public void LoadNextScene()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.buildIndex + 1);
+    }
 }
