@@ -6,6 +6,9 @@ public class AmmoTracker : MonoBehaviour
 {
     [SerializeField] PlayerProjectile projectile;
     [SerializeField] LevelManager levelManager;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip killSound;
+    [SerializeField] AudioClip deathSound;
 
     private bool isThrown = false;
     private bool ammoEmpty = false;
@@ -26,12 +29,14 @@ public class AmmoTracker : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
+            audioSource.PlayOneShot(killSound);
             isThrown = false;
             transform.position = startPosition;
             projectile.StopProjectile();
         }
         else if (other.tag == "Deathwall")
         {
+            audioSource.PlayOneShot(deathSound);
             ammoEmpty = true;
             projectile.NoLongerFire();
             levelManager.GameOver();
