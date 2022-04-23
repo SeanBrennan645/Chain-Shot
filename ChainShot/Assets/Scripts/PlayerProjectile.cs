@@ -27,4 +27,9 @@ public class PlayerProjectile : MonoBehaviour
     {
         Projectile.transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
+
+    public void StopProjectile()
+    {
+        fired = false;
+    }
 }
