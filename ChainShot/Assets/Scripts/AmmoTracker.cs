@@ -5,6 +5,7 @@ using UnityEngine;
 public class AmmoTracker : MonoBehaviour
 {
     [SerializeField] PlayerProjectile projectile;
+    [SerializeField] LevelManager levelManager;
 
     private bool isThrown = false;
     private bool ammoEmpty = false;
@@ -32,8 +33,8 @@ public class AmmoTracker : MonoBehaviour
         else if (other.tag == "Deathwall")
         {
             ammoEmpty = true;
-            Debug.Log("DeathWall was hit!");
-            //Endgame
+            projectile.NoLongerFire();
+            levelManager.GameOver();
         }
     }
 }

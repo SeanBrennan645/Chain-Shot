@@ -8,11 +8,12 @@ public class PlayerProjectile : MonoBehaviour
     [SerializeField] float speed = 15.0f;
 
     private bool fired = false;
+    private bool canFire = true;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && canFire)
         {
             fired = true;
         }
@@ -31,5 +32,10 @@ public class PlayerProjectile : MonoBehaviour
     public void StopProjectile()
     {
         fired = false;
+    }
+
+    public void NoLongerFire()
+    {
+        canFire = false;
     }
 }

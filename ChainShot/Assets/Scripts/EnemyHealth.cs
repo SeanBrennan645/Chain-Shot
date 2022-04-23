@@ -16,7 +16,6 @@ public class EnemyHealth : MonoBehaviour
         mover = GetComponent<EnemyMover>();
         startPosition = transform.position;
         startPosition -= new Vector3(startPosition.x, 0.0f, 0.0f);
-        Debug.Log("Start Pos: " + startPosition);
     }
 
     private void OnTriggerEnter(Collider other)
