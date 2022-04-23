@@ -6,10 +6,12 @@ public class EnemyHealth : MonoBehaviour
 {
     private bool isHit = false;
     private Vector3 startPosition;
+    private EnemyMover mover;
 
     // Start is called before the first frame update
     void Start()
     {
+        mover = GetComponent<EnemyMover>();
         startPosition = transform.position;
     }
 
@@ -17,14 +19,15 @@ public class EnemyHealth : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("I've been hit!!");
-            this.enabled = false;
+            mover.IncreaseSpeed();
+            transform.position = startPosition;
+            this.gameObject.SetActive(false);
             //increase score
         }
         if (other.tag == "Deathwall")
         {
             transform.position = startPosition;
-            this.enabled = false;
+            this.gameObject.SetActive(false);
         }
     }
 }
